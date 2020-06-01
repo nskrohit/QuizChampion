@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/titleFragment">
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.rohit.quizchampion.TitleFragment"
+        android:label="Welcome"
+        tools:layout="@layout/fragment_title">
+        <action
+            android:id="@+id/action_titleFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.rohit.quizchampion.QuizFragment"
+        android:label="Lets Play"
+        tools:layout="@layout/fragment_quiz">
+        <action
+            android:id="@+id/action_quizFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment"
+            app:popUpTo="@id/quizFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.rohit.quizchampion.GameOverFragment"
+        android:label="Game Over"
+        tools:layout="@layout/fragment_game_over">
+        <argument
+            android:name="correctAnswers"
+            app:argType="integer" />
+        <argument
+            android:name="wrongAnswers"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_gameOverFragment_to_quizFragment"
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/quizFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.rohit.quizchampion.RulesFragment"
+        android:label="Rules"
+        tools:layout="@layout/fragment_rules" >
+        <action
+            android:id="@+id/action_rulesFragment_to_quizFragment"
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/quizFragment" />
+    </fragment>
+</navigation>

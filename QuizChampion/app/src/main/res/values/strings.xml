@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Quiz Champion</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_text">Welcome To</string>
+    <string name="play_button">Let\'s Play</string>
+    <string name="submit_button">Submit</string>
+    <string name="game_over_text">Game Over</string>
+    <string name="score_text">Your Result</string>
+    <string name="next_match">Play Again</string>
+    <string name="rules_title">Quiz Champion Rules</string>
+    <string name="rules_text">This Quiz contains total 5 questions with four options to choose from.
+        \n\nEach question has only one right option. Choose the right option and click on Submit button to go to next question.
+        \n\nAt the end of quiz total number of correct and wrong answers and total score will be shown.
+        \n\nEach right answer gives 2 points and wrong answer gives -1.
+        \n\nNote: Each question should be answered within 10 seconds.
+        \n\nAll the best.
+    </string>
+    <string name="rules">Rules</string>
+    <string name="time">Time Remaining</string>
+</resources>
