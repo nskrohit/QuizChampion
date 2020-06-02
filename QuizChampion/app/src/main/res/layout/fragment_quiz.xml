@@ -30,12 +30,12 @@
                 android:layout_marginTop="44dp"
                 android:layout_marginEnd="32dp"
                 android:text="@{game.currentQuestion.question}"
-                android:textAlignment="center"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Question" />
 
             <RadioGroup
                 android:id="@+id/optionsRadioGroup"
@@ -58,27 +58,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/radio_button_bottom_margin"
                     android:checked="false"
-                    android:text="@{game.answers[0]}" />
+                    android:text="@{game.answers[0]}"
+                    tools:text="Option 1"/>
 
                 <RadioButton
                     android:id="@+id/option_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/radio_button_bottom_margin"
-                    android:text="@{game.answers[1]}" />
+                    android:text="@{game.answers[1]}"
+                    tools:text="Option 2"/>
 
                 <RadioButton
                     android:id="@+id/option_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/radio_button_bottom_margin"
-                    android:text="@{game.answers[2]}" />
+                    android:text="@{game.answers[2]}"
+                    tools:text="Option 3"/>
 
                 <RadioButton
                     android:id="@+id/option_four"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{game.answers[3]}" />
+                    android:text="@{game.answers[3]}"
+                    tools:text="Option 4"/>
             </RadioGroup>
 
             <Button
