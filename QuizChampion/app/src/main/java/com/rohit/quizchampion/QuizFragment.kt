@@ -44,12 +44,9 @@ class QuizFragment : Fragment() {
             answers = listOf("Alaknanda","Ganga","Yamuna","Saraswathi"))
     )
 
-    private lateinit var binding:FragmentQuizBinding
-
     private val TIME_OVER = 0L
     private val ONE_SECOND = 1000L
     private val COUNTDOWN_TIME = 11000L
-    //var currentTime : Long = 0
     private val _currentTime = MutableLiveData<Long>()
     val currentTime: LiveData<Long>
         get() = _currentTime
@@ -57,10 +54,8 @@ class QuizFragment : Fragment() {
 
     lateinit var currentQuestion: Question //Set by setQuestion()
     lateinit var answers: MutableList<String> //Set by setQuestion()
-    private var questionIndex = 0
-    private var wrongAnswer = 0
-    private val numQuestions = Math.min((questions.size + 1) / 2, 5)
-    var correctAnswers:Int = 0
+    private var questionIndex:Int = 0
+    private val numQuestions:Int = Math.min((questions.size + 1) / 2, 5)
 
     val currentTimeString = Transformations.map(currentTime) { time ->
         DateUtils.formatElapsedTime(time)
@@ -68,6 +63,11 @@ class QuizFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+        var wrongAnswer:Int = 0
+        var correctAnswers:Int = 0
+        val binding = DataBindingUtil.inflate<FragmentQuizBinding>(inflater,
+            R.layout.fragment_quiz,container,false)
 
         //Adding timer
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
@@ -87,16 +87,12 @@ class QuizFragment : Fragment() {
                     setQuestion()
                 }
                 else
-                {
+                {   //When all questions are over then navigate to GameOverFragment
                     findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToGameOverFragment(correctAnswers,wrongAnswer))
                 }
             }
         }
 
-        Log.i("QuizFragment","onCreate fragment")
-
-        binding = DataBindingUtil.inflate<FragmentQuizBinding>(inflater,
-            R.layout.fragment_quiz,container,false)
         //Set first question and then randomize the list
         randomizeQuestions()
 
@@ -106,8 +102,8 @@ class QuizFragment : Fragment() {
         { view: View ->
             val checkedId = binding.optionsRadioGroup.checkedRadioButtonId
 
-            Log.i("QuizFragment","numberOfQuestions = $numQuestions")
-            Log.i("QuizFragment","questionIndex = $questionIndex")
+//            Log.i("QuizFragment","numberOfQuestions = $numQuestions")
+//            Log.i("QuizFragment","questionIndex = $questionIndex")
 
             if (-1 != checkedId) {
                 //Storing response in answerIndex
@@ -145,13 +141,12 @@ class QuizFragment : Fragment() {
     }
 
     private fun setQuestion() {
-        Log.i("QuizFragment","setQuestion() called")
+//        Log.i("QuizFragment","setQuestion() called")
         currentQuestion = questions[questionIndex]
         answers = currentQuestion.answers.toMutableList()
         answers.shuffle()
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.quiz_fragment_title, questionIndex + 1, numQuestions)
         timer.start()
-
     }
 
     override fun onDestroy() {
